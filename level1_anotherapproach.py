@@ -66,14 +66,12 @@ print('order quantity=',d1['neighbourhoods']['n0']['order_quantity'])
 all_orders=[]
 key_orders=[]
 res=[]
-index=[]
 n=21
 visited=[0]*n
 l=['n0','n1','n2','n3','n4','n5','n6','n7','n8','n9','n10','n11','n12','n13','n14','n15','n16','n17','n18','n19']
 for i in range(len(d1['neighbourhoods'])):
     all_orders.append(d1['neighbourhoods'][l[i]]['order_quantity'])
     key_orders.append(l[i])
-    index.append(i)
 dict1=dict(zip(key_orders,all_orders))
 sorted_dict = dict(sorted(dict1.items(), key=operator.itemgetter(1),reverse=True))
 
