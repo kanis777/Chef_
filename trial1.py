@@ -3,7 +3,7 @@ import json
 
 output = []
 
-def travellingsalesman(c):
+def tsp(c):
     global cost
     adj_vertex = 9999999
     min_val = 9999999
@@ -23,13 +23,13 @@ def travellingsalesman(c):
         print((adj_vertex + 1), end=" ")
         cost = cost + tsp_g[c][adj_vertex]
         return
-    travellingsalesman(adj_vertex)
+    tsp(adj_vertex)
 n = 21
 cost = 0
 visited = np.zeros(n, dtype=int)
 tsp_g = []
 
-json_file_path = 'C:\Student Handout\Input data\level0.json'
+json_file_path = "C:\mock_hack\Student Handout\Input data\level0.json"
 
 # Read the JSON file
 with open(json_file_path, 'r') as file:
@@ -45,8 +45,6 @@ for i in range(len(name)+1):
 for i in range(len(r)):
     tsp_g[0].append(r[i])
 
-
-
 for i in range(1, len(name)+1):
     d = data['neighbourhoods'][name[i-1]]['distances']
     for j in d:
@@ -58,7 +56,7 @@ for i in range(1, 21):
 tsp_g = np.array(tsp_g)
 
 print("Shortest Path:", end=" ")
-travellingsalesman(0)
+tsp(0)
 
 print()
 print("Minimum Cost:", end=" ")
