@@ -83,6 +83,7 @@ for keys,value in sorted_dict.items():
     print(keys,end=' ')
 find(0,sorted_dict)
 result={'v0': {'path':path}}
+print('path')
 print(result)
 with open("level1a_output.json", "w") as outfile:
     json.dump(result, outfile)
