@@ -9,8 +9,8 @@ def tsp(c,cap,l):
     res.append(c-1)
     for k in range(n):
         if (visited[k] == 0) and (tsp_g[c][k] != 0):
-            if tsp_g[c][k] < min_val and cap-d1['neighbourhoods'][l[k]]['order_quantity']>0:
-                cap=cap-d1['neighbourhoods'][l[k]]['order_quantity']
+            if tsp_g[c][k] < min_val and (cap-d1['neighbourhoods'][l[k-1]]['order_quantity'])>0:
+                cap=cap-d1['neighbourhoods'][l[k-1]]['order_quantity']
                 min_val = tsp_g[c][k]
                 adj_vertex = k
     if min_val != 10000:
@@ -55,7 +55,6 @@ l=['n0','n1','n2','n3','n4','n5','n6','n7','n8','n9','n10','n11','n12','n13','n1
 trip=0
 tsp_g = np.array(distances)
 print("Shortest Path:", end=" ")
-print('res=',res)
 path=[]
 while 0 in visited:
     res1=[]
@@ -67,5 +66,6 @@ while 0 in visited:
         res1.append(s)
     path.append(res1)
 result={'v0': {'path':path}}
-with open("level0_output.json", "w") as outfile:
+print(result)
+with open("level1a_output.json", "w") as outfile:
     json.dump(result, outfile)
