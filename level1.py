@@ -9,7 +9,7 @@ def tsp(c,cap,l):
     res.append(c-1)
     for k in range(n):
         if (visited[k] == 0) and (tsp_g[c][k] != 0):
-            if tsp_g[c][k] < min_val and (cap-d1['neighbourhoods'][l[k-1]]['order_quantity'])>0:
+            if (cap-d1['neighbourhoods'][l[k-1]]['order_quantity'])>0:
                 cap=cap-d1['neighbourhoods'][l[k-1]]['order_quantity']
                 min_val = tsp_g[c][k]
                 adj_vertex = k
@@ -57,6 +57,7 @@ tsp_g = np.array(distances)
 print("Shortest Path:", end=" ")
 path=[]
 while 0 in visited:
+    print('entering')
     res1=[]
     res1.append('r0')
     trip+=1
@@ -64,6 +65,7 @@ while 0 in visited:
     for i in range (1,len(res)):
         s='n'+str(res[i])
         res1.append(s)
+    res1.append('r0')
     path.append(res1)
 result={'v0': {'path':path}}
 print(result)
