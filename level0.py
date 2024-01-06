@@ -45,7 +45,7 @@ for i in distances:
 res=[]
 num_neighborhoods = d1.get('n_neighbourhoods', 0)
 num_restaurants=d1.get('n_restaurants', 0)
-n = 21
+n = num_neighborhoods + num_restaurants
 cost = 0
 visited = np.zeros(n, dtype=int)
 tsp_g = np.array(distances)
