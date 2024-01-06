@@ -1,4 +1,5 @@
 import json
+import numpy as np
 class Graph():
 
 	def __init__(self, vertices):
@@ -39,11 +40,30 @@ class Graph():
 					dist[v] = dist[u] + self.graph[u][v]
 
 		self.printSolution(dist)
-		
-json_file_path = r"C:\mock_hack\Student Handout\Input data\level0.json"
-with open(json_file_path, 'r') as json_file:
-    data = json.load(json_file)
+if __name__ == "__main__": 	
+    json_file_path = r"C:\mock_hack\Student Handout\Input data\level0.json"
+    with open(json_file_path, 'r') as json_file:
+        data = json.load(json_file)
+    g=[]
+    name = ['n0', 'n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8', 'n9', 'n10', 'n11', 'n12', 'n13', 'n14', 'n15', 'n16', 'n17', 'n18', 'n19']
+    print("hello")
+    r = data['restaurants']['r0']['neighbourhood_distance']
+    print("r=",r)
+    for i in range(len(name)+1):
+        g.append([0])
 
+    for i in range(len(r)):
+        g[0].append(r[i])
+
+    for i in range(1, len(name)+1):
+        d = data['neighbourhoods'][name[i-1]]['distances']
+        for j in d:
+            g[i].append(j)
+
+    for i in range(1, 21):
+        g[i][0] = r[i-1]
+
+    tsp_g = np.array(g)
     # Extract distances from the neighborhoods section
     neighborhoods_data = data.get('neighbourhoods', {})
     restaurants_data = data.get('restaurants', {})
@@ -58,13 +78,11 @@ with open(json_file_path, 'r') as json_file:
     for i in range(1,num_neighborhoods+1):
         for j in range(num_neighborhoods):
             distances[i][j] = neighborhoods_data[f'n{i-1}']['distances'][j-1]
-
+        print(distances[i])
 # Driver program
-g = Graph(num_neighborhoods)
-g.graph = distances
+    gr = Graph(num_neighborhoods+1)
+    gr.graph = g
 
-g.dijkstra(0)
-
-# This code is contributed by Divyanshu Mehta
+    gr.dijkstra(0)
 
 
